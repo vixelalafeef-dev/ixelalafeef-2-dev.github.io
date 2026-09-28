@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JEESO HOTEL | فندق جيزو</title>
+
+    <meta name="description"
+          content="JEESO HOTEL - تجربة فندقية بطابع أثري يجمع الأصالة والراحة.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header" id="header">
+
+    <div class="container nav-container">
+
+        <a href="#home" class="logo">
+            <span class="logo-symbol">✦</span>
+            <div>
+                <strong>JEESO</strong>
+                <small>HOTEL</small>
+            </div>
+        </a>
+
+        <nav class="nav" id="nav">
+
+            <a href="#home" data-i18n="navHome">الرئيسية</a>
+            <a href="#gallery" data-i18n="navGallery">الصور</a>
+            <a href="#wifi" data-i18n="navWifi">الإنترنت</a>
+            <a href="#support" data-i18n="navSupport">الدعم الفني</a>
+
+        </nav>
+
+        <div class="language-wrapper">
+
+            <button class="language-button" id="languageButton">
+                AR ▾
+            </button>
+
+            <div class="language-menu" id="languageMenu">
+
+                <button data-lang="ar">العربية</button>
+                <button data-lang="en">English</button>
+                <button data-lang="fr">Français</button>
+                <button data-lang="es">Español</button>
+                <button data-lang="tr">Türkçe</button>
+
+            </div>
+
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="ornament">✦ ───── ✦</div>
+
+        <p class="eyebrow" data-i18n="heroEyebrow">
+            أصالة • ضيافة • تاريخ
+        </p>
+
+        <h1>
+            <span data-i18n="heroTitle">أهلاً بكم في</span>
+            <strong>JEESO HOTEL</strong>
+        </h1>
+
+        <p class="hero-description" data-i18n="heroDescription">
+            تجربة فندقية تجمع بين روح المكان التاريخية
+            وراحة الضيافة العصرية.
+        </p>
+
+        <a href="#gallery" class="hero-button" data-i18n="heroButton">
+            اكتشف الفندق
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro section">
+
+    <div class="container intro-grid">
+
+        <div class="section-number">
+            01
+        </div>
+
+        <div>
+
+            <span class="section-label" data-i18n="introLabel">
+                تجربة استثنائية
+            </span>
+
+            <h2 data-i18n="introTitle">
+                حيث يلتقي التاريخ بالضيافة
+            </h2>
+
+            <p data-i18n="introText">
+                في JEESO HOTEL نحرص على تقديم تجربة مختلفة،
+                مستوحاة من جمال العمارة والتراث، مع توفير
+                أجواء مريحة للضيوف وخدمة تهتم بأدق التفاصيل.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery section" id="gallery">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-number">02</span>
+
+            <div>
+
+                <span class="section-label" data-i18n="galleryLabel">
+                    معرض الفندق
+                </span>
+
+                <h2 data-i18n="galleryTitle">
+                    الصور
+                </h2>
+
+                <p data-i18n="galleryText">
+                    استكشف أجواء الفندق وتفاصيله.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+            <!-- الصورة الأولى -->
+            <div class="gallery-item large">
+                <img src="images/hotel-1.jpg"
+                     alt="JEESO HOTEL">
+                <div class="image-caption">
+                    <span>01</span>
+                    <strong data-i18n="image1">
+                        واجهة الفندق
+                    </strong>
+                </div>
+            </div>
+
+
+            <!-- الصورة الثانية -->
+            <div class="gallery-item">
+                <img src="images/hotel-2.jpg"
+                     alt="JEESO HOTEL">
+                <div class="image-caption">
+                    <span>02</span>
+                    <strong data-i18n="image2">
+                        أجواء الفندق
+                    </strong>
+                </div>
+            </div>
+
+
+            <!-- الصورة الثالثة -->
+            <div class="gallery-item">
+                <img src="images/hotel-3.jpg"
+                     alt="JEESO HOTEL">
+                <div class="image-caption">
+                    <span>03</span>
+                    <strong data-i18n="image3">
+                        تفاصيل أثرية
+                    </strong>
+                </div>
+            </div>
+
+
+            <!-- الصورة الرابعة -->
+            <div class="gallery-item">
+                <img src="images/hotel-4.jpg"
+                     alt="JEESO HOTEL">
+                <div class="image-caption">
+                    <span>04</span>
+                    <strong data-i18n="image4">
+                        المساحات الداخلية
+                    </strong>
+                </div>
+            </div>
+
+
+            <!-- الصورة الخامسة -->
+            <div class="gallery-item large">
+                <img src="images/hotel-5.jpg"
+                     alt="JEESO HOTEL">
+                <div class="image-caption">
+                    <span>05</span>
+                    <strong data-i18n="image5">
+                        تفاصيل الضيافة
+                    </strong>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WIFI ================= -->
+
+<section class="wifi section" id="wifi">
+
+    <div class="container">
+
+        <div class="wifi-card">
+
+            <div class="wifi-icon">
+                ◉
+            </div>
+
+            <div class="wifi-content">
+
+                <span class="section-label" data-i18n="wifiLabel">
+                    خدمة الإنترنت
+                </span>
+
+                <h2 data-i18n="wifiTitle">
+                    ابقَ متصلاً
+                </h2>
+
+                <p data-i18n="wifiText">
+                    شبكة الإنترنت متاحة لضيوف الفندق.
+                </p>
+
+                <div class="wifi-details">
+
+                    <div class="wifi-detail">
+
+                        <span data-i18n="wifiName">
+                            اسم الشبكة
+                        </span>
+
+                        <strong>
+                            Jeeso_2.4GHz
+                        </strong>
+
+                    </div>
+
+                    <div class="wifi-detail">
+
+                        <span data-i18n="wifiPassword">
+                            كلمة المرور
+                        </span>
+
+                        <strong id="wifiPassword">
+                            jeeso1234
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <button class="copy-button"
+                        id="copyWifi"
+                        data-i18n="copyWifi">
+                    نسخ كلمة المرور
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUPPORT ================= -->
+
+<section class="support section" id="support">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-number">03</span>
+
+            <div>
+
+                <span class="section-label" data-i18n="supportLabel">
+                    خدمة الضيوف
+                </span>
+
+                <h2 data-i18n="supportTitle">
+                    الدعم الفني
+                </h2>
+
+                <p data-i18n="supportText">
+                    نحن هنا لمساعدتك عند الحاجة.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="support-grid">
+
+            <!-- PHONE -->
+
+            <a class="support-card"
+               href="tel:+962779815999">
+
+                <div class="support-card-icon">
+                    ☎
+                </div>
+
+                <div>
+
+                    <span data-i18n="phoneLabel">
+                        الهاتف
+                    </span>
+
+                    <strong>
+                        00962 779 815 999
+                    </strong>
+
+                    <small data-i18n="phoneAction">
+                        اتصل بالدعم الفني
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <!-- INSTAGRAM -->
+
+            <a class="support-card"
+               href="https://www.instagram.com/jeeso.hotel/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <div class="support-card-icon">
+                    ◎
+                </div>
+
+                <div>
+
+                    <span>
+                        Instagram
+                    </span>
+
+                    <strong>
+                        @jeeso.hotel
+                    </strong>
+
+                    <small data-i18n="instagramAction">
+                        زيارة حساب الفندق
+                    </small>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <div class="footer-brand">
+
+            <div class="logo footer-logo">
+
+                <span class="logo-symbol">✦</span>
+
+                <div>
+                    <strong>JEESO</strong>
+                    <small>HOTEL</small>
+                </div>
+
+            </div>
+
+            <p data-i18n="footerText">
+                أصالة المكان، دفء الضيافة.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#home" data-i18n="navHome">
+                الرئيسية
+            </a>
+
+            <a href="#gallery" data-i18n="navGallery">
+                الصور
+            </a>
+
+            <a href="#wifi" data-i18n="navWifi">
+                الإنترنت
+            </a>
+
+            <a href="#support" data-i18n="navSupport">
+                الدعم الفني
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span id="year"></span> JEESO HOTEL
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
