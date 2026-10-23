@@ -1,1063 +1,536 @@
 /* =========================================================
-   JEESO HOTEL
-   JavaScript
+   JEESO HOTEL — SMOOTH ANIMATION SCRIPT
    ========================================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================================
-   HEADER SCROLL
-   ========================================================= */
+    /* =====================================================
+       PAGE LOAD ANIMATION
+       ===================================================== */
 
-const header = document.getElementById("header");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 40) {
-
-        header.classList.add("scrolled");
-
-    } else {
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
-
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const nav =
-    document.getElementById("nav");
-
-
-menuToggle.addEventListener("click", () => {
-
-    nav.classList.toggle("active");
-
-});
-
-
-document.querySelectorAll(".nav a")
-    .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            nav.classList.remove("active");
-
-        });
-
+    requestAnimationFrame(() => {
+        document.body.classList.add("page-loaded");
     });
 
 
-/* =========================================================
-   LANGUAGE MENU
-   ========================================================= */
+    /* =====================================================
+       HEADER SCROLL
+       ===================================================== */
 
-const languageButton =
-    document.getElementById("languageButton");
+    const header = document.querySelector("header");
 
-const languageMenu =
-    document.getElementById("languageMenu");
+    function handleHeader() {
+        if (!header) return;
 
-
-languageButton.addEventListener("click", () => {
-
-    languageMenu.classList.toggle("active");
-
-});
-
-
-document.addEventListener("click", (event) => {
-
-    if (!event.target.closest(".language-wrapper")) {
-
-        languageMenu.classList.remove("active");
-
+        if (window.scrollY > 40) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
     }
 
-});
+    window.addEventListener("scroll", handleHeader, {
+        passive: true
+    });
 
+    handleHeader();
 
-/* =========================================================
-   TRANSLATIONS
-   ========================================================= */
 
-const translations = {
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
 
-    ar: {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav");
 
-        direction: "rtl",
-        code: "AR",
+    if (menuToggle && nav) {
 
-        navHome: "الرئيسية",
-        navGallery: "الصور",
-        navWifi: "الإنترنت",
-        navSupport: "الدعم الفني",
-        navBooking: "احجز الآن",
+        menuToggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
 
-        heroEyebrow:
-            "أصالة • ضيافة • تاريخ",
+            menuToggle.setAttribute(
+                "aria-expanded",
+                nav.classList.contains("active")
+            );
+        });
 
-        heroTitle:
-            "أهلاً بكم في",
+        nav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("active");
 
-        heroDescription:
-            "تجربة فندقية تجمع بين روح المكان التاريخية وراحة الضيافة العصرية.",
-
-        heroButton:
-            "اكتشف الفندق",
-
-        bookingButton:
-            "احجز إقامتك الآن",
-
-        introLabel:
-            "تجربة استثنائية",
-
-        introTitle:
-            "حيث يلتقي التاريخ بالضيافة",
-
-        introText:
-            "في JEESO HOTEL نحرص على تقديم تجربة مختلفة، مستوحاة من جمال العمارة والتراث، مع توفير أجواء مريحة للضيوف وخدمة تهتم بأدق التفاصيل.",
-
-        galleryLabel:
-            "معرض الفندق",
-
-        galleryTitle:
-            "اكتشف الفندق",
-
-        galleryText:
-            "شاهد الفندق وتفاصيله وأجواء الإقامة من خلال الصور.",
-
-        image1:
-            "واجهة الفندق",
-
-        image2:
-            "أجواء الفندق",
-
-        image3:
-            "تفاصيل الفندق",
-
-        image4:
-            "المساحات الداخلية",
-
-        image5:
-            "تفاصيل الضيافة",
-
-        image6:
-            "الغرف",
-
-        image7:
-            "تفاصيل الغرف",
-
-        image8:
-            "أجواء الإقامة",
-
-        wifiLabel:
-            "خدمة الإنترنت",
-
-        wifiTitle:
-            "ابقَ متصلاً",
-
-        wifiText:
-            "شبكة الإنترنت متاحة لضيوف الفندق.",
-
-        wifiName:
-            "اسم الشبكة",
-
-        wifiPassword:
-            "كلمة المرور",
-
-        copyWifi:
-            "نسخ كلمة المرور",
-
-        bookingLabel:
-            "احجز إقامتك",
-
-        bookingTitle:
-            "جاهز لاكتشاف JEESO HOTEL؟",
-
-        bookingText:
-            "احجز غرفتك الآن واستمتع بإقامة مميزة في JEESO HOTEL.",
-
-        bookingMainButton:
-            "احجز عبر Booking.com",
-
-        bookingAction:
-            "احجز غرفتك الآن",
-
-        supportLabel:
-            "خدمة الضيوف",
-
-        supportTitle:
-            "الدعم الفني",
-
-        supportText:
-            "نحن هنا لمساعدتك عند الحاجة.",
-
-        phoneLabel:
-            "الهاتف",
-
-        phoneAction:
-            "اتصل بالدعم الفني",
-
-        instagramAction:
-            "زيارة حساب الفندق",
-
-        footerText:
-            "أصالة المكان، دفء الضيافة."
-
-    },
-
-
-    en: {
-
-        direction: "ltr",
-        code: "EN",
-
-        navHome: "Home",
-        navGallery: "Gallery",
-        navWifi: "Wi-Fi",
-        navSupport: "Technical Support",
-        navBooking: "Book Now",
-
-        heroEyebrow:
-            "Heritage • Hospitality • History",
-
-        heroTitle:
-            "Welcome to",
-
-        heroDescription:
-            "A hotel experience where the spirit of heritage meets modern comfort and hospitality.",
-
-        heroButton:
-            "Discover the Hotel",
-
-        bookingButton:
-            "Book Your Stay",
-
-        introLabel:
-            "An Exceptional Experience",
-
-        introTitle:
-            "Where Heritage Meets Hospitality",
-
-        introText:
-            "At JEESO HOTEL, we offer a distinctive experience inspired by architecture and heritage, combined with comfort and attentive hospitality.",
-
-        galleryLabel:
-            "Hotel Gallery",
-
-        galleryTitle:
-            "Discover the Hotel",
-
-        galleryText:
-            "Explore the hotel, its details and atmosphere through our photos.",
-
-        image1:
-            "Hotel Exterior",
-
-        image2:
-            "Hotel Atmosphere",
-
-        image3:
-            "Hotel Details",
-
-        image4:
-            "Interior Spaces",
-
-        image5:
-            "Hospitality Details",
-
-        image6:
-            "Rooms",
-
-        image7:
-            "Room Details",
-
-        image8:
-            "Stay Atmosphere",
-
-        wifiLabel:
-            "Internet Service",
-
-        wifiTitle:
-            "Stay Connected",
-
-        wifiText:
-            "Wi-Fi is available for hotel guests.",
-
-        wifiName:
-            "Network Name",
-
-        wifiPassword:
-            "Password",
-
-        copyWifi:
-            "Copy Password",
-
-        bookingLabel:
-            "Book Your Stay",
-
-        bookingTitle:
-            "Ready to Discover JEESO HOTEL?",
-
-        bookingText:
-            "Book your room now and enjoy a memorable stay at JEESO HOTEL.",
-
-        bookingMainButton:
-            "Book via Booking.com",
-
-        bookingAction:
-            "Book Your Room",
-
-        supportLabel:
-            "Guest Service",
-
-        supportTitle:
-            "Technical Support",
-
-        supportText:
-            "We are here to assist you whenever you need us.",
-
-        phoneLabel:
-            "Phone",
-
-        phoneAction:
-            "Call Technical Support",
-
-        instagramAction:
-            "Visit Hotel Instagram",
-
-        footerText:
-            "Heritage of the place, warmth of hospitality."
-
-    },
-
-
-    fr: {
-
-        direction: "ltr",
-        code: "FR",
-
-        navHome: "Accueil",
-        navGallery: "Galerie",
-        navWifi: "Wi-Fi",
-        navSupport: "Support",
-        navBooking: "Réserver",
-
-        heroEyebrow:
-            "Patrimoine • Hospitalité • Histoire",
-
-        heroTitle:
-            "Bienvenue à",
-
-        heroDescription:
-            "Une expérience hôtelière où l'esprit du patrimoine rencontre le confort moderne.",
-
-        heroButton:
-            "Découvrir l'hôtel",
-
-        bookingButton:
-            "Réserver votre séjour",
-
-        introLabel:
-            "Une expérience exceptionnelle",
-
-        introTitle:
-            "Là où le patrimoine rencontre l'hospitalité",
-
-        introText:
-            "JEESO HOTEL propose une expérience unique inspirée de l'architecture et du patrimoine, avec confort et attention aux détails.",
-
-        galleryLabel:
-            "Galerie de l'hôtel",
-
-        galleryTitle:
-            "Découvrir l'hôtel",
-
-        galleryText:
-            "Découvrez l'hôtel, ses détails et son atmosphère en images.",
-
-        image1:
-            "Extérieur de l'hôtel",
-
-        image2:
-            "Ambiance de l'hôtel",
-
-        image3:
-            "Détails de l'hôtel",
-
-        image4:
-            "Espaces intérieurs",
-
-        image5:
-            "Détails de l'hospitalité",
-
-        image6:
-            "Chambres",
-
-        image7:
-            "Détails des chambres",
-
-        image8:
-            "Ambiance du séjour",
-
-        wifiLabel:
-            "Service Internet",
-
-        wifiTitle:
-            "Restez connecté",
-
-        wifiText:
-            "Le Wi-Fi est disponible pour les clients.",
-
-        wifiName:
-            "Nom du réseau",
-
-        wifiPassword:
-            "Mot de passe",
-
-        copyWifi:
-            "Copier le mot de passe",
-
-        bookingLabel:
-            "Réservez votre séjour",
-
-        bookingTitle:
-            "Prêt à découvrir JEESO HOTEL ?",
-
-        bookingText:
-            "Réservez votre chambre dès maintenant et profitez d'un séjour agréable.",
-
-        bookingMainButton:
-            "Réserver via Booking.com",
-
-        bookingAction:
-            "Réserver votre chambre",
-
-        supportLabel:
-            "Service client",
-
-        supportTitle:
-            "Support technique",
-
-        supportText:
-            "Nous sommes là pour vous aider.",
-
-        phoneLabel:
-            "Téléphone",
-
-        phoneAction:
-            "Appeler le support",
-
-        instagramAction:
-            "Instagram de l'hôtel",
-
-        footerText:
-            "L'authenticité du lieu, la chaleur de l'hospitalité."
-
-    },
-
-
-    es: {
-
-        direction: "ltr",
-        code: "ES",
-
-        navHome: "Inicio",
-        navGallery: "Galería",
-        navWifi: "Wi-Fi",
-        navSupport: "Soporte",
-        navBooking: "Reservar",
-
-        heroEyebrow:
-            "Patrimonio • Hospitalidad • Historia",
-
-        heroTitle:
-            "Bienvenidos a",
-
-        heroDescription:
-            "Una experiencia hotelera donde el espíritu del patrimonio se encuentra con el confort moderno.",
-
-        heroButton:
-            "Descubrir el hotel",
-
-        bookingButton:
-            "Reservar estancia",
-
-        introLabel:
-            "Una experiencia excepcional",
-
-        introTitle:
-            "Donde el patrimonio se encuentra con la hospitalidad",
-
-        introText:
-            "JEESO HOTEL ofrece una experiencia única inspirada en la arquitectura y el patrimonio, combinada con comodidad y atención al detalle.",
-
-        galleryLabel:
-            "Galería del hotel",
-
-        galleryTitle:
-            "Descubre el hotel",
-
-        galleryText:
-            "Descubre el hotel, sus detalles y su ambiente a través de nuestras fotos.",
-
-        image1:
-            "Exterior del hotel",
-
-        image2:
-            "Ambiente del hotel",
-
-        image3:
-            "Detalles del hotel",
-
-        image4:
-            "Espacios interiores",
-
-        image5:
-            "Detalles de hospitalidad",
-
-        image6:
-            "Habitaciones",
-
-        image7:
-            "Detalles de las habitaciones",
-
-        image8:
-            "Ambiente de la estancia",
-
-        wifiLabel:
-            "Servicio de Internet",
-
-        wifiTitle:
-            "Mantente conectado",
-
-        wifiText:
-            "Wi-Fi disponible para los huéspedes.",
-
-        wifiName:
-            "Nombre de la red",
-
-        wifiPassword:
-            "Contraseña",
-
-        copyWifi:
-            "Copiar contraseña",
-
-        bookingLabel:
-            "Reserva tu estancia",
-
-        bookingTitle:
-            "¿Listo para descubrir JEESO HOTEL?",
-
-        bookingText:
-            "Reserva tu habitación ahora y disfruta de una estancia memorable.",
-
-        bookingMainButton:
-            "Reservar en Booking.com",
-
-        bookingAction:
-            "Reservar habitación",
-
-        supportLabel:
-            "Servicio al huésped",
-
-        supportTitle:
-            "Soporte técnico",
-
-        supportText:
-            "Estamos aquí para ayudarte.",
-
-        phoneLabel:
-            "Teléfono",
-
-        phoneAction:
-            "Llamar al soporte",
-
-        instagramAction:
-            "Instagram del hotel",
-
-        footerText:
-            "La autenticidad del lugar, la calidez de la hospitalidad."
-
-    },
-
-
-    tr: {
-
-        direction: "ltr",
-        code: "TR",
-
-        navHome: "Ana Sayfa",
-        navGallery: "Galeri",
-        navWifi: "Wi-Fi",
-        navSupport: "Teknik Destek",
-        navBooking: "Rezervasyon",
-
-        heroEyebrow:
-            "Miras • Misafirperverlik • Tarih",
-
-        heroTitle:
-            "JEESO HOTEL'e",
-
-        heroDescription:
-            "Tarihin ruhunu modern konfor ve misafirperverlikle buluşturan özel bir otel deneyimi.",
-
-        heroButton:
-            "Oteli Keşfet",
-
-        bookingButton:
-            "Konaklamanızı Rezerve Edin",
-
-        introLabel:
-            "Benzersiz Bir Deneyim",
-
-        introTitle:
-            "Miras ve Misafirperverliğin Buluştuğu Yer",
-
-        introText:
-            "JEESO HOTEL, mimari ve kültürel mirastan ilham alan, konfor ve özenli hizmet sunan özel bir deneyim sağlar.",
-
-        galleryLabel:
-            "Otel Galerisi",
-
-        galleryTitle:
-            "Oteli Keşfedin",
-
-        galleryText:
-            "Otelimizi, detaylarını ve atmosferini fotoğraflarla keşfedin.",
-
-        image1:
-            "Otel Dış Görünümü",
-
-        image2:
-            "Otel Atmosferi",
-
-        image3:
-            "Otel Detayları",
-
-        image4:
-            "İç Mekanlar",
-
-        image5:
-            "Misafirperverlik Detayları",
-
-        image6:
-            "Odalar",
-
-        image7:
-            "Oda Detayları",
-
-        image8:
-            "Konaklama Atmosferi",
-
-        wifiLabel:
-            "İnternet Hizmeti",
-
-        wifiTitle:
-            "Bağlantıda Kalın",
-
-        wifiText:
-            "Wi-Fi otel misafirleri için kullanılabilir.",
-
-        wifiName:
-            "Ağ Adı",
-
-        wifiPassword:
-            "Şifre",
-
-        copyWifi:
-            "Şifreyi Kopyala",
-
-        bookingLabel:
-            "Konaklamanızı Rezerve Edin",
-
-        bookingTitle:
-            "JEESO HOTEL'i Keşfetmeye Hazır mısınız?",
-
-        bookingText:
-            "Odanızı şimdi rezerve edin ve JEESO HOTEL'de unutulmaz bir konaklama yaşayın.",
-
-        bookingMainButton:
-            "Booking.com'dan Rezervasyon",
-
-        bookingAction:
-            "Odanızı Rezerve Edin",
-
-        supportLabel:
-            "Misafir Hizmetleri",
-
-        supportTitle:
-            "Teknik Destek",
-
-        supportText:
-            "İhtiyacınız olduğunda size yardımcı olmak için buradayız.",
-
-        phoneLabel:
-            "Telefon",
-
-        phoneAction:
-            "Teknik Desteği Ara",
-
-        instagramAction:
-            "Otel Instagram'ı",
-
-        footerText:
-            "Mekanın ruhu, misafirperverliğin sıcaklığı."
-
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+        });
     }
 
-};
+
+    /* =====================================================
+       LANGUAGE MENU
+       ===================================================== */
+
+    const language = document.querySelector(".language");
+    const languageBtn = document.querySelector(".language-btn");
+
+    if (language && languageBtn) {
+
+        languageBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            language.classList.toggle("active");
+        });
+
+        document.addEventListener("click", (event) => {
+
+            if (!language.contains(event.target)) {
+                language.classList.remove("active");
+            }
+
+        });
+    }
 
 
-/* =========================================================
-   APPLY LANGUAGE
-   ========================================================= */
+    /* =====================================================
+       TRANSLATIONS
+       ===================================================== */
 
-function setLanguage(language) {
+    const translations = {
 
-    const data = translations[language];
+        ar: {
+            home: "الرئيسية",
+            gallery: "الصور",
+            wifi: "الواي فاي",
+            support: "الدعم",
+            book: "احجز الآن",
 
-    if (!data) return;
+            heroTitle: "JEESO HOTEL",
+            heroSubtitle: "إقامة فاخرة بطابع أصيل",
+            heroButton: "احجز إقامتك الآن",
 
-    document.documentElement.lang =
-        language;
+            introTitle: "مرحباً بكم في JEESO HOTEL",
+            introText:
+                "نرحب بكم في جيزو هوتيل، حيث الراحة والأناقة والضيافة الأردنية الأصيلة. صُمم الفندق ليمنحكم تجربة إقامة هادئة ومميزة تجمع بين الطابع التراثي والخدمات الحديثة.",
 
-    document.documentElement.dir =
-        data.direction;
+            galleryTitle: "استكشف الفندق",
 
-    languageButton.textContent =
-        data.code + " ▾";
+            wifiTitle: "شبكة الإنترنت",
+            wifiNetwork: "اسم الشبكة",
+            wifiPassword: "كلمة المرور",
+            copy: "نسخ",
+
+            supportTitle: "خدمة العملاء",
+            supportPhone: "للدعم الفني والحجوزات",
+            supportInstagram: "تابعونا على إنستغرام",
+
+            bookingTitle: "جاهز للإقامة؟",
+            bookingText: "احجز غرفتك الآن واستمتع بتجربة JEESO HOTEL.",
+            bookingButton: "احجز عبر Booking.com",
+
+            footer:
+                "© 2026 JEESO HOTEL — جميع الحقوق محفوظة"
+        },
+
+        en: {
+            home: "Home",
+            gallery: "Gallery",
+            wifi: "Wi-Fi",
+            support: "Support",
+            book: "Book Now",
+
+            heroTitle: "JEESO HOTEL",
+            heroSubtitle: "Luxury stay with authentic charm",
+            heroButton: "Book Your Stay",
+
+            introTitle: "Welcome to JEESO HOTEL",
+            introText:
+                "Welcome to JEESO HOTEL, where comfort, elegance and authentic Jordanian hospitality come together. Our hotel offers a peaceful and memorable stay combining heritage character with modern services.",
+
+            galleryTitle: "Explore the Hotel",
+
+            wifiTitle: "Wi-Fi",
+            wifiNetwork: "Network",
+            wifiPassword: "Password",
+            copy: "Copy",
+
+            supportTitle: "Guest Support",
+            supportPhone: "Technical support & reservations",
+            supportInstagram: "Follow us on Instagram",
+
+            bookingTitle: "Ready to Stay?",
+            bookingText:
+                "Book your room now and enjoy the JEESO HOTEL experience.",
+            bookingButton: "Book via Booking.com",
+
+            footer:
+                "© 2026 JEESO HOTEL — All Rights Reserved"
+        },
+
+        fr: {
+            home: "Accueil",
+            gallery: "Galerie",
+            wifi: "Wi-Fi",
+            support: "Assistance",
+            book: "Réserver",
+
+            heroTitle: "JEESO HOTEL",
+            heroSubtitle: "Un séjour luxueux au charme authentique",
+            heroButton: "Réserver votre séjour",
+
+            introTitle: "Bienvenue au JEESO HOTEL",
+            introText:
+                "Bienvenue au JEESO HOTEL, où confort, élégance et hospitalité jordanienne authentique se rencontrent. Profitez d'un séjour paisible et mémorable alliant charme traditionnel et services modernes.",
+
+            galleryTitle: "Découvrez l'hôtel",
+
+            wifiTitle: "Wi-Fi",
+            wifiNetwork: "Réseau",
+            wifiPassword: "Mot de passe",
+            copy: "Copier",
+
+            supportTitle: "Service client",
+            supportPhone: "Assistance technique et réservations",
+            supportInstagram: "Suivez-nous sur Instagram",
+
+            bookingTitle: "Prêt à séjourner ?",
+            bookingText:
+                "Réservez votre chambre dès maintenant et profitez de l'expérience JEESO HOTEL.",
+            bookingButton: "Réserver via Booking.com",
+
+            footer:
+                "© 2026 JEESO HOTEL — Tous droits réservés"
+        },
+
+        es: {
+            home: "Inicio",
+            gallery: "Galería",
+            wifi: "Wi-Fi",
+            support: "Soporte",
+            book: "Reservar",
+
+            heroTitle: "JEESO HOTEL",
+            heroSubtitle: "Una estancia de lujo con encanto auténtico",
+            heroButton: "Reserva tu estancia",
+
+            introTitle: "Bienvenido a JEESO HOTEL",
+            introText:
+                "Bienvenido a JEESO HOTEL, donde el confort, la elegancia y la auténtica hospitalidad jordana se unen. Disfruta de una estancia tranquila y memorable con carácter tradicional y servicios modernos.",
+
+            galleryTitle: "Descubre el hotel",
+
+            wifiTitle: "Wi-Fi",
+            wifiNetwork: "Red",
+            wifiPassword: "Contraseña",
+            copy: "Copiar",
+
+            supportTitle: "Atención al cliente",
+            supportPhone: "Soporte técnico y reservas",
+            supportInstagram: "Síguenos en Instagram",
+
+            bookingTitle: "¿Listo para alojarte?",
+            bookingText:
+                "Reserva tu habitación ahora y disfruta de la experiencia JEESO HOTEL.",
+            bookingButton: "Reservar en Booking.com",
+
+            footer:
+                "© 2026 JEESO HOTEL — Todos los derechos reservados"
+        },
+
+        tr: {
+            home: "Ana Sayfa",
+            gallery: "Galeri",
+            wifi: "Wi-Fi",
+            support: "Destek",
+            book: "Rezervasyon",
+
+            heroTitle: "JEESO HOTEL",
+            heroSubtitle: "Otantik bir atmosferde lüks konaklama",
+            heroButton: "Konaklamanızı Rezerve Edin",
+
+            introTitle: "JEESO HOTEL'e Hoş Geldiniz",
+            introText:
+                "Konfor, zarafet ve otantik Ürdün misafirperverliğinin buluştuğu JEESO HOTEL'e hoş geldiniz. Geleneksel atmosferi modern hizmetlerle birleştiren huzurlu ve unutulmaz bir konaklama deneyimi sunuyoruz.",
+
+            galleryTitle: "Oteli Keşfedin",
+
+            wifiTitle: "Wi-Fi",
+            wifiNetwork: "Ağ",
+            wifiPassword: "Şifre",
+            copy: "Kopyala",
+
+            supportTitle: "Misafir Desteği",
+            supportPhone: "Teknik destek ve rezervasyon",
+            supportInstagram: "Instagram'da bizi takip edin",
+
+            bookingTitle: "Konaklamaya Hazır mısınız?",
+            bookingText:
+                "Odanızı şimdi rezerve edin ve JEESO HOTEL deneyiminin keyfini çıkarın.",
+            bookingButton: "Booking.com üzerinden rezerve et",
+
+            footer:
+                "© 2026 JEESO HOTEL — Tüm hakları saklıdır"
+        }
+    };
+
+
+    /* =====================================================
+       LANGUAGE SWITCHING
+       ===================================================== */
+
+    window.setLanguage = function(language) {
+
+        if (!translations[language]) return;
+
+        const html = document.documentElement;
+
+        html.lang = language;
+
+        if (language === "ar") {
+            html.dir = "rtl";
+        } else {
+            html.dir = "ltr";
+        }
+
+        document
+            .querySelectorAll("[data-i18n]")
+            .forEach(element => {
+
+                const key = element.getAttribute("data-i18n");
+
+                if (translations[language][key]) {
+                    element.textContent =
+                        translations[language][key];
+                }
+
+            });
+
+        const languageBtn =
+            document.querySelector(".language-btn");
+
+        if (languageBtn) {
+            languageBtn.textContent =
+                language.toUpperCase();
+        }
+
+        localStorage.setItem(
+            "jeesoLanguage",
+            language
+        );
+
+        if (language) {
+            document
+                .querySelector(".language")
+                ?.classList.remove("active");
+        }
+    };
+
+
+    /* =====================================================
+       LOAD SAVED LANGUAGE
+       ===================================================== */
+
+    const savedLanguage =
+        localStorage.getItem("jeesoLanguage") || "ar";
+
+    if (translations[savedLanguage]) {
+        window.setLanguage(savedLanguage);
+    } else {
+        window.setLanguage("ar");
+    }
+
+
+    /* =====================================================
+       WIFI COPY
+       ===================================================== */
+
+    const copyBtn =
+        document.querySelector(".copy-btn");
+
+    const wifiPassword =
+        "jeeso1234";
+
+    if (copyBtn) {
+
+        copyBtn.addEventListener("click", async () => {
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    wifiPassword
+                );
+
+                const originalText =
+                    copyBtn.textContent;
+
+                copyBtn.textContent = "✓ تم النسخ";
+
+                setTimeout(() => {
+                    copyBtn.textContent =
+                        originalText;
+                }, 1800);
+
+            } catch (error) {
+
+                const textarea =
+                    document.createElement("textarea");
+
+                textarea.value = wifiPassword;
+
+                document.body.appendChild(textarea);
+
+                textarea.select();
+
+                document.execCommand("copy");
+
+                textarea.remove();
+
+                copyBtn.textContent = "✓ تم النسخ";
+
+                setTimeout(() => {
+                    copyBtn.textContent = "نسخ";
+                }, 1800);
+            }
+        });
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+       ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".section-title, " +
+            ".intro, " +
+            ".intro > *, " +
+            ".wifi-card, " +
+            ".support-card, " +
+            ".booking-section > *"
+        );
+
+    revealElements.forEach((element, index) => {
+
+        if (
+            element.classList.contains("section-title") ||
+            element.classList.contains("wifi-card") ||
+            element.classList.contains("booking-section")
+        ) {
+            element.classList.add("reveal-scale");
+        } else {
+            element.classList.add("reveal");
+        }
+
+        element.style.setProperty(
+            "--delay",
+            `${Math.min(index * 0.08, 0.45)}s`
+        );
+    });
+
+
+    /* =====================================================
+       GALLERY ANIMATION
+       ===================================================== */
+
+    const galleryItems =
+        document.querySelectorAll(".gallery-item");
+
+    galleryItems.forEach((item, index) => {
+
+        item.style.transitionDelay =
+            `${Math.min(index * 0.08, 0.5)}s`;
+    });
+
+
+    /* =====================================================
+       INTERSECTION OBSERVER
+       ===================================================== */
+
+    const observer =
+        new IntersectionObserver(
+            (entries, obs) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        obs.unobserve(
+                            entry.target
+                        );
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -60px 0px"
+            }
+        );
 
 
     document
-        .querySelectorAll("[data-i18n]")
+        .querySelectorAll(
+            ".reveal, .reveal-left, .reveal-right, .reveal-scale, .gallery-item"
+        )
         .forEach(element => {
 
-            const key =
-                element.getAttribute("data-i18n");
-
-            if (data[key]) {
-
-                element.textContent =
-                    data[key];
-
-            }
+            observer.observe(element);
 
         });
 
 
-    localStorage.setItem(
-        "jeesoLanguage",
-        language
-    );
+    /* =====================================================
+       CURRENT YEAR
+       ===================================================== */
 
+    const year =
+        document.querySelector("#year");
 
-    languageMenu.classList.remove(
-        "active"
-    );
-
-}
-
-
-/* =========================================================
-   LANGUAGE BUTTONS
-   ========================================================= */
-
-document
-    .querySelectorAll("[data-lang]")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                setLanguage(
-                    button.dataset.lang
-                );
-
-            }
-        );
-
-    });
-
-
-/* =========================================================
-   DEFAULT LANGUAGE
-   ========================================================= */
-
-const savedLanguage =
-    localStorage.getItem(
-        "jeesoLanguage"
-    );
-
-setLanguage(
-    savedLanguage || "ar"
-);
-
-
-/* =========================================================
-   COPY WIFI PASSWORD
-   ========================================================= */
-
-const copyWifi =
-    document.getElementById(
-        "copyWifi"
-    );
-
-const wifiPassword =
-    document.getElementById(
-        "wifiPassword"
-    );
-
-
-copyWifi.addEventListener(
-    "click",
-    async () => {
-
-        try {
-
-            await navigator.clipboard.writeText(
-                wifiPassword.textContent.trim()
-            );
-
-            const original =
-                copyWifi.textContent;
-
-            copyWifi.textContent =
-                "✓ تم النسخ";
-
-            setTimeout(() => {
-
-                copyWifi.textContent =
-                    original;
-
-            }, 1800);
-
-        } catch (error) {
-
-            alert("jeeso1234");
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   IMAGE GALLERY / LIGHTBOX
-   ========================================================= */
-
-const galleryItems =
-    document.querySelectorAll(
-        ".gallery-item"
-    );
-
-const lightbox =
-    document.getElementById(
-        "lightbox"
-    );
-
-const lightboxImage =
-    document.getElementById(
-        "lightboxImage"
-    );
-
-const lightboxClose =
-    document.getElementById(
-        "lightboxClose"
-    );
-
-const lightboxPrev =
-    document.getElementById(
-        "lightboxPrev"
-    );
-
-const lightboxNext =
-    document.getElementById(
-        "lightboxNext"
-    );
-
-
-let currentImage = 0;
-
-
-const galleryImages =
-    Array.from(galleryItems)
-        .map(item =>
-            item.getAttribute(
-                "data-image"
-            )
-        );
-
-
-function openLightbox(index) {
-
-    currentImage = index;
-
-    lightboxImage.src =
-        galleryImages[currentImage];
-
-    lightbox.classList.add("active");
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-function closeLightbox() {
-
-    lightbox.classList.remove(
-        "active"
-    );
-
-    document.body.style.overflow =
-        "";
-
-}
-
-
-function showNextImage() {
-
-    currentImage++;
-
-    if (
-        currentImage >=
-        galleryImages.length
-    ) {
-
-        currentImage = 0;
-
+    if (year) {
+        year.textContent =
+            new Date().getFullYear();
     }
 
-    lightboxImage.src =
-        galleryImages[currentImage];
 
-}
+    /* =====================================================
+       SMOOTH ANCHOR SCROLL
+       ===================================================== */
 
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
 
-function showPreviousImage() {
+            link.addEventListener("click", event => {
 
-    currentImage--;
+                const targetId =
+                    link.getAttribute("href");
 
-    if (currentImage < 0) {
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
 
-        currentImage =
-            galleryImages.length - 1;
+                const target =
+                    document.querySelector(targetId);
 
-    }
+                if (!target) return;
 
-    lightboxImage.src =
-        galleryImages[currentImage];
+                event.preventDefault();
 
-}
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
+            });
 
-galleryItems.forEach(
-    (item, index) => {
+        });
 
-        item.addEventListener(
-            "click",
-            () => {
-
-                openLightbox(index);
-
-            }
-        );
-
-    }
-);
-
-
-lightboxClose.addEventListener(
-    "click",
-    closeLightbox
-);
-
-
-lightboxNext.addEventListener(
-    "click",
-    showNextImage
-);
-
-
-lightboxPrev.addEventListener(
-    "click",
-    showPreviousImage
-);
-
-
-lightbox.addEventListener(
-    "click",
-    (event) => {
-
-        if (
-            event.target ===
-            lightbox
-        ) {
-
-            closeLightbox();
-
-        }
-
-    }
-);
-
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            !lightbox.classList.contains(
-                "active"
-            )
-        ) return;
-
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closeLightbox();
-
-        }
-
-
-        if (
-            event.key === "ArrowRight"
-        ) {
-
-            showNextImage();
-
-        }
-
-
-        if (
-            event.key === "ArrowLeft"
-        ) {
-
-            showPreviousImage();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CURRENT YEAR
-   ========================================================= */
-
-document.getElementById(
-    "year"
-).textContent =
-    new Date().getFullYear();
+});
