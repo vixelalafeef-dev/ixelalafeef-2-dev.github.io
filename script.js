@@ -1,536 +1,876 @@
 /* =========================================================
-   JEESO HOTEL — SMOOTH ANIMATION SCRIPT
-   ========================================================= */
+   JEESO HOTEL
+   MAIN JAVASCRIPT
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+
 
     /* =====================================================
-       PAGE LOAD ANIMATION
-       ===================================================== */
+       PAGE START
+    ===================================================== */
 
-    requestAnimationFrame(() => {
+    setTimeout(function () {
+
         document.body.classList.add("page-loaded");
-    });
+
+    }, 100);
 
 
     /* =====================================================
-       HEADER SCROLL
-       ===================================================== */
+       HEADER
+    ===================================================== */
 
-    const header = document.querySelector("header");
+    const header =
+        document.getElementById("header");
 
-    function handleHeader() {
+    function updateHeader() {
+
         if (!header) return;
 
-        if (window.scrollY > 40) {
+        if (window.scrollY > 60) {
+
             header.classList.add("scrolled");
+
         } else {
+
             header.classList.remove("scrolled");
+
         }
+
     }
 
-    window.addEventListener("scroll", handleHeader, {
-        passive: true
-    });
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
 
-    handleHeader();
+    updateHeader();
 
 
     /* =====================================================
        MOBILE MENU
-       ===================================================== */
+    ===================================================== */
 
-    const menuToggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector(".nav");
+    const menuToggle =
+        document.querySelector(".menu-toggle");
+
+    const nav =
+        document.querySelector(".nav");
 
     if (menuToggle && nav) {
 
-        menuToggle.addEventListener("click", () => {
-            nav.classList.toggle("active");
+        menuToggle.addEventListener(
+            "click",
+            function () {
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                nav.classList.contains("active")
-            );
-        });
+                nav.classList.toggle("active");
 
-        nav.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                nav.classList.remove("active");
+            }
+        );
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
+
+        nav.querySelectorAll("a")
+            .forEach(function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        nav.classList.remove("active");
+
+                    }
                 );
+
             });
-        });
+
     }
 
 
     /* =====================================================
        LANGUAGE MENU
-       ===================================================== */
+    ===================================================== */
 
-    const language = document.querySelector(".language");
-    const languageBtn = document.querySelector(".language-btn");
+    const language =
+        document.querySelector(".language");
 
-    if (language && languageBtn) {
+    const languageButton =
+        document.querySelector(".language-btn");
 
-        languageBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
+    if (language && languageButton) {
 
-            language.classList.toggle("active");
-        });
+        languageButton.addEventListener(
+            "click",
+            function (event) {
 
-        document.addEventListener("click", (event) => {
+                event.stopPropagation();
 
-            if (!language.contains(event.target)) {
-                language.classList.remove("active");
+                language.classList.toggle("active");
+
             }
+        );
 
-        });
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (!language.contains(event.target)) {
+
+                    language.classList.remove("active");
+
+                }
+
+            }
+        );
+
     }
 
 
     /* =====================================================
        TRANSLATIONS
-       ===================================================== */
+    ===================================================== */
 
     const translations = {
 
         ar: {
+
             home: "الرئيسية",
+
+            about: "الفندق",
+
             gallery: "الصور",
+
             wifi: "الواي فاي",
+
             support: "الدعم",
+
             book: "احجز الآن",
 
-            heroTitle: "JEESO HOTEL",
-            heroSubtitle: "إقامة فاخرة بطابع أصيل",
-            heroButton: "احجز إقامتك الآن",
+            heroSubtitle:
+                "إقامة فاخرة بطابع أصيل",
 
-            introTitle: "مرحباً بكم في JEESO HOTEL",
+            heroButton:
+                "احجز إقامتك الآن",
+
+            introTitle:
+                "مرحباً بكم في JEESO HOTEL",
+
             introText:
                 "نرحب بكم في جيزو هوتيل، حيث الراحة والأناقة والضيافة الأردنية الأصيلة. صُمم الفندق ليمنحكم تجربة إقامة هادئة ومميزة تجمع بين الطابع التراثي والخدمات الحديثة.",
 
-            galleryTitle: "استكشف الفندق",
+            galleryTitle:
+                "استكشف الفندق",
 
-            wifiTitle: "شبكة الإنترنت",
-            wifiNetwork: "اسم الشبكة",
-            wifiPassword: "كلمة المرور",
-            copy: "نسخ",
+            wifiTitle:
+                "شبكة الإنترنت",
 
-            supportTitle: "خدمة العملاء",
-            supportPhone: "للدعم الفني والحجوزات",
-            supportInstagram: "تابعونا على إنستغرام",
+            wifiNetwork:
+                "اسم الشبكة",
 
-            bookingTitle: "جاهز للإقامة؟",
-            bookingText: "احجز غرفتك الآن واستمتع بتجربة JEESO HOTEL.",
-            bookingButton: "احجز عبر Booking.com",
+            wifiPassword:
+                "كلمة المرور",
 
-            footer:
-                "© 2026 JEESO HOTEL — جميع الحقوق محفوظة"
+            copy:
+                "نسخ",
+
+            supportTitle:
+                "خدمة العملاء",
+
+            supportPhone:
+                "للدعم الفني والحجوزات",
+
+            supportInstagram:
+                "تابعونا على إنستغرام",
+
+            bookingTitle:
+                "جاهز للإقامة؟",
+
+            bookingText:
+                "احجز غرفتك الآن واستمتع بتجربة JEESO HOTEL.",
+
+            bookingButton:
+                "احجز عبر Booking.com",
+
+            footerRights:
+                "جميع الحقوق محفوظة"
+
         },
 
+
         en: {
+
             home: "Home",
+
+            about: "Hotel",
+
             gallery: "Gallery",
+
             wifi: "Wi-Fi",
+
             support: "Support",
+
             book: "Book Now",
 
-            heroTitle: "JEESO HOTEL",
-            heroSubtitle: "Luxury stay with authentic charm",
-            heroButton: "Book Your Stay",
+            heroSubtitle:
+                "Luxury stay with authentic charm",
 
-            introTitle: "Welcome to JEESO HOTEL",
+            heroButton:
+                "Book Your Stay",
+
+            introTitle:
+                "Welcome to JEESO HOTEL",
+
             introText:
                 "Welcome to JEESO HOTEL, where comfort, elegance and authentic Jordanian hospitality come together. Our hotel offers a peaceful and memorable stay combining heritage character with modern services.",
 
-            galleryTitle: "Explore the Hotel",
+            galleryTitle:
+                "Explore the Hotel",
 
-            wifiTitle: "Wi-Fi",
-            wifiNetwork: "Network",
-            wifiPassword: "Password",
-            copy: "Copy",
+            wifiTitle:
+                "Wi-Fi",
 
-            supportTitle: "Guest Support",
-            supportPhone: "Technical support & reservations",
-            supportInstagram: "Follow us on Instagram",
+            wifiNetwork:
+                "Network",
 
-            bookingTitle: "Ready to Stay?",
+            wifiPassword:
+                "Password",
+
+            copy:
+                "Copy",
+
+            supportTitle:
+                "Guest Support",
+
+            supportPhone:
+                "Technical support & reservations",
+
+            supportInstagram:
+                "Follow us on Instagram",
+
+            bookingTitle:
+                "Ready to Stay?",
+
             bookingText:
                 "Book your room now and enjoy the JEESO HOTEL experience.",
-            bookingButton: "Book via Booking.com",
 
-            footer:
-                "© 2026 JEESO HOTEL — All Rights Reserved"
+            bookingButton:
+                "Book via Booking.com",
+
+            footerRights:
+                "All Rights Reserved"
+
         },
 
+
         fr: {
+
             home: "Accueil",
+
+            about: "Hôtel",
+
             gallery: "Galerie",
+
             wifi: "Wi-Fi",
+
             support: "Assistance",
+
             book: "Réserver",
 
-            heroTitle: "JEESO HOTEL",
-            heroSubtitle: "Un séjour luxueux au charme authentique",
-            heroButton: "Réserver votre séjour",
+            heroSubtitle:
+                "Un séjour luxueux au charme authentique",
 
-            introTitle: "Bienvenue au JEESO HOTEL",
+            heroButton:
+                "Réserver votre séjour",
+
+            introTitle:
+                "Bienvenue au JEESO HOTEL",
+
             introText:
                 "Bienvenue au JEESO HOTEL, où confort, élégance et hospitalité jordanienne authentique se rencontrent. Profitez d'un séjour paisible et mémorable alliant charme traditionnel et services modernes.",
 
-            galleryTitle: "Découvrez l'hôtel",
+            galleryTitle:
+                "Découvrez l'hôtel",
 
-            wifiTitle: "Wi-Fi",
-            wifiNetwork: "Réseau",
-            wifiPassword: "Mot de passe",
-            copy: "Copier",
+            wifiTitle:
+                "Wi-Fi",
 
-            supportTitle: "Service client",
-            supportPhone: "Assistance technique et réservations",
-            supportInstagram: "Suivez-nous sur Instagram",
+            wifiNetwork:
+                "Réseau",
 
-            bookingTitle: "Prêt à séjourner ?",
+            wifiPassword:
+                "Mot de passe",
+
+            copy:
+                "Copier",
+
+            supportTitle:
+                "Service client",
+
+            supportPhone:
+                "Assistance technique et réservations",
+
+            supportInstagram:
+                "Suivez-nous sur Instagram",
+
+            bookingTitle:
+                "Prêt à séjourner ?",
+
             bookingText:
                 "Réservez votre chambre dès maintenant et profitez de l'expérience JEESO HOTEL.",
-            bookingButton: "Réserver via Booking.com",
 
-            footer:
-                "© 2026 JEESO HOTEL — Tous droits réservés"
+            bookingButton:
+                "Réserver via Booking.com",
+
+            footerRights:
+                "Tous droits réservés"
+
         },
 
+
         es: {
+
             home: "Inicio",
+
+            about: "Hotel",
+
             gallery: "Galería",
+
             wifi: "Wi-Fi",
+
             support: "Soporte",
+
             book: "Reservar",
 
-            heroTitle: "JEESO HOTEL",
-            heroSubtitle: "Una estancia de lujo con encanto auténtico",
-            heroButton: "Reserva tu estancia",
+            heroSubtitle:
+                "Una estancia de lujo con encanto auténtico",
 
-            introTitle: "Bienvenido a JEESO HOTEL",
+            heroButton:
+                "Reserva tu estancia",
+
+            introTitle:
+                "Bienvenido a JEESO HOTEL",
+
             introText:
                 "Bienvenido a JEESO HOTEL, donde el confort, la elegancia y la auténtica hospitalidad jordana se unen. Disfruta de una estancia tranquila y memorable con carácter tradicional y servicios modernos.",
 
-            galleryTitle: "Descubre el hotel",
+            galleryTitle:
+                "Descubre el hotel",
 
-            wifiTitle: "Wi-Fi",
-            wifiNetwork: "Red",
-            wifiPassword: "Contraseña",
-            copy: "Copiar",
+            wifiTitle:
+                "Wi-Fi",
 
-            supportTitle: "Atención al cliente",
-            supportPhone: "Soporte técnico y reservas",
-            supportInstagram: "Síguenos en Instagram",
+            wifiNetwork:
+                "Red",
 
-            bookingTitle: "¿Listo para alojarte?",
+            wifiPassword:
+                "Contraseña",
+
+            copy:
+                "Copiar",
+
+            supportTitle:
+                "Atención al cliente",
+
+            supportPhone:
+                "Soporte técnico y reservas",
+
+            supportInstagram:
+                "Síguenos en Instagram",
+
+            bookingTitle:
+                "¿Listo para alojarte?",
+
             bookingText:
                 "Reserva tu habitación ahora y disfruta de la experiencia JEESO HOTEL.",
-            bookingButton: "Reservar en Booking.com",
 
-            footer:
-                "© 2026 JEESO HOTEL — Todos los derechos reservados"
+            bookingButton:
+                "Reservar en Booking.com",
+
+            footerRights:
+                "Todos los derechos reservados"
+
         },
 
+
         tr: {
+
             home: "Ana Sayfa",
+
+            about: "Otel",
+
             gallery: "Galeri",
+
             wifi: "Wi-Fi",
+
             support: "Destek",
+
             book: "Rezervasyon",
 
-            heroTitle: "JEESO HOTEL",
-            heroSubtitle: "Otantik bir atmosferde lüks konaklama",
-            heroButton: "Konaklamanızı Rezerve Edin",
+            heroSubtitle:
+                "Otantik bir atmosferde lüks konaklama",
 
-            introTitle: "JEESO HOTEL'e Hoş Geldiniz",
+            heroButton:
+                "Konaklamanızı Rezerve Edin",
+
+            introTitle:
+                "JEESO HOTEL'e Hoş Geldiniz",
+
             introText:
                 "Konfor, zarafet ve otantik Ürdün misafirperverliğinin buluştuğu JEESO HOTEL'e hoş geldiniz. Geleneksel atmosferi modern hizmetlerle birleştiren huzurlu ve unutulmaz bir konaklama deneyimi sunuyoruz.",
 
-            galleryTitle: "Oteli Keşfedin",
+            galleryTitle:
+                "Oteli Keşfedin",
 
-            wifiTitle: "Wi-Fi",
-            wifiNetwork: "Ağ",
-            wifiPassword: "Şifre",
-            copy: "Kopyala",
+            wifiTitle:
+                "Wi-Fi",
 
-            supportTitle: "Misafir Desteği",
-            supportPhone: "Teknik destek ve rezervasyon",
-            supportInstagram: "Instagram'da bizi takip edin",
+            wifiNetwork:
+                "Ağ",
 
-            bookingTitle: "Konaklamaya Hazır mısınız?",
+            wifiPassword:
+                "Şifre",
+
+            copy:
+                "Kopyala",
+
+            supportTitle:
+                "Misafir Desteği",
+
+            supportPhone:
+                "Teknik destek ve rezervasyon",
+
+            supportInstagram:
+                "Instagram'da bizi takip edin",
+
+            bookingTitle:
+                "Konaklamaya Hazır mısınız?",
+
             bookingText:
                 "Odanızı şimdi rezerve edin ve JEESO HOTEL deneyiminin keyfini çıkarın.",
-            bookingButton: "Booking.com üzerinden rezerve et",
 
-            footer:
-                "© 2026 JEESO HOTEL — Tüm hakları saklıdır"
+            bookingButton:
+                "Booking.com üzerinden rezerve et",
+
+            footerRights:
+                "Tüm hakları saklıdır"
+
         }
+
     };
 
 
     /* =====================================================
-       LANGUAGE SWITCHING
-       ===================================================== */
+       LANGUAGE FUNCTION
+    ===================================================== */
 
-    window.setLanguage = function(language) {
+    window.setLanguage =
+        function (language) {
 
-        if (!translations[language]) return;
+            if (!translations[language]) {
+                return;
+            }
 
-        const html = document.documentElement;
+            const html =
+                document.documentElement;
 
-        html.lang = language;
+            html.lang = language;
 
-        if (language === "ar") {
-            html.dir = "rtl";
-        } else {
-            html.dir = "ltr";
-        }
+            if (language === "ar") {
 
-        document
-            .querySelectorAll("[data-i18n]")
-            .forEach(element => {
+                html.dir = "rtl";
 
-                const key = element.getAttribute("data-i18n");
+            } else {
 
-                if (translations[language][key]) {
-                    element.textContent =
-                        translations[language][key];
-                }
+                html.dir = "ltr";
 
-            });
+            }
 
-        const languageBtn =
-            document.querySelector(".language-btn");
 
-        if (languageBtn) {
-            languageBtn.textContent =
-                language.toUpperCase();
-        }
-
-        localStorage.setItem(
-            "jeesoLanguage",
-            language
-        );
-
-        if (language) {
             document
-                .querySelector(".language")
-                ?.classList.remove("active");
-        }
-    };
+                .querySelectorAll("[data-i18n]")
+                .forEach(function (element) {
+
+                    const key =
+                        element.getAttribute("data-i18n");
+
+                    if (
+                        translations[language][key]
+                    ) {
+
+                        element.textContent =
+                            translations[language][key];
+
+                    }
+
+                });
+
+
+            if (languageButton) {
+
+                languageButton.textContent =
+                    language.toUpperCase();
+
+            }
+
+
+            localStorage.setItem(
+                "jeesoLanguage",
+                language
+            );
+
+
+            if (language) {
+
+                language
+                    = language;
+
+            }
+
+
+            if (document.querySelector(".language")) {
+
+                document
+                    .querySelector(".language")
+                    .classList.remove("active");
+
+            }
+
+        };
 
 
     /* =====================================================
-       LOAD SAVED LANGUAGE
-       ===================================================== */
+       LOAD LANGUAGE
+    ===================================================== */
 
     const savedLanguage =
-        localStorage.getItem("jeesoLanguage") || "ar";
+        localStorage.getItem(
+            "jeesoLanguage"
+        ) || "ar";
 
-    if (translations[savedLanguage]) {
-        window.setLanguage(savedLanguage);
-    } else {
-        window.setLanguage("ar");
-    }
+    setLanguage(savedLanguage);
 
 
     /* =====================================================
        WIFI COPY
-       ===================================================== */
+    ===================================================== */
 
-    const copyBtn =
-        document.querySelector(".copy-btn");
+    const copyButton =
+        document.getElementById("copyWifi");
 
-    const wifiPassword =
-        "jeeso1234";
+    const password =
+        document.getElementById("wifiPassword");
 
-    if (copyBtn) {
 
-        copyBtn.addEventListener("click", async () => {
+    if (copyButton && password) {
 
-            try {
+        copyButton.addEventListener(
+            "click",
+            async function () {
 
-                await navigator.clipboard.writeText(
-                    wifiPassword
-                );
+                const text =
+                    password.textContent.trim();
 
-                const originalText =
-                    copyBtn.textContent;
+                try {
 
-                copyBtn.textContent = "✓ تم النسخ";
+                    await navigator.clipboard.writeText(
+                        text
+                    );
 
-                setTimeout(() => {
-                    copyBtn.textContent =
-                        originalText;
-                }, 1800);
+                    const oldText =
+                        copyButton.textContent;
 
-            } catch (error) {
+                    copyButton.textContent =
+                        "✓ تم النسخ";
 
-                const textarea =
-                    document.createElement("textarea");
+                    copyButton.style.background =
+                        "#b79a66";
 
-                textarea.value = wifiPassword;
+                    copyButton.style.color =
+                        "#fff";
 
-                document.body.appendChild(textarea);
 
-                textarea.select();
+                    setTimeout(function () {
 
-                document.execCommand("copy");
+                        copyButton.textContent =
+                            oldText;
 
-                textarea.remove();
+                        copyButton.style.background =
+                            "";
 
-                copyBtn.textContent = "✓ تم النسخ";
+                        copyButton.style.color =
+                            "";
 
-                setTimeout(() => {
-                    copyBtn.textContent = "نسخ";
-                }, 1800);
+                    }, 1800);
+
+                } catch (error) {
+
+                    const textarea =
+                        document.createElement(
+                            "textarea"
+                        );
+
+                    textarea.value = text;
+
+                    document.body.appendChild(
+                        textarea
+                    );
+
+                    textarea.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+                    textarea.remove();
+
+                    copyButton.textContent =
+                        "✓ تم النسخ";
+
+                    setTimeout(function () {
+
+                        copyButton.textContent =
+                            "نسخ";
+
+                    }, 1800);
+
+                }
+
             }
-        });
+        );
+
     }
 
 
     /* =====================================================
        SCROLL REVEAL
-       ===================================================== */
+    ===================================================== */
 
     const revealElements =
         document.querySelectorAll(
-            ".section-title, " +
-            ".intro, " +
-            ".intro > *, " +
-            ".wifi-card, " +
-            ".support-card, " +
-            ".booking-section > *"
+            ".reveal, .reveal-scale"
         );
 
-    revealElements.forEach((element, index) => {
-
-        if (
-            element.classList.contains("section-title") ||
-            element.classList.contains("wifi-card") ||
-            element.classList.contains("booking-section")
-        ) {
-            element.classList.add("reveal-scale");
-        } else {
-            element.classList.add("reveal");
-        }
-
-        element.style.setProperty(
-            "--delay",
-            `${Math.min(index * 0.08, 0.45)}s`
-        );
-    });
-
-
-    /* =====================================================
-       GALLERY ANIMATION
-       ===================================================== */
-
-    const galleryItems =
-        document.querySelectorAll(".gallery-item");
-
-    galleryItems.forEach((item, index) => {
-
-        item.style.transitionDelay =
-            `${Math.min(index * 0.08, 0.5)}s`;
-    });
-
-
-    /* =====================================================
-       INTERSECTION OBSERVER
-       ===================================================== */
 
     const observer =
         new IntersectionObserver(
-            (entries, obs) => {
+            function (entries) {
 
-                entries.forEach(entry => {
+                entries.forEach(
+                    function (entry) {
 
-                    if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                        obs.unobserve(
                             entry.target
-                        );
-                    }
+                                .classList
+                                .add("visible");
 
-                });
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    }
+                );
 
             },
             {
                 threshold: 0.12,
-                rootMargin: "0px 0px -60px 0px"
+
+                rootMargin:
+                    "0px 0px -70px 0px"
             }
         );
 
 
-    document
-        .querySelectorAll(
-            ".reveal, .reveal-left, .reveal-right, .reveal-scale, .gallery-item"
-        )
-        .forEach(element => {
+    revealElements.forEach(
+        function (element) {
 
             observer.observe(element);
 
-        });
+        }
+    );
 
 
     /* =====================================================
-       CURRENT YEAR
-       ===================================================== */
+       PARALLAX HERO
+    ===================================================== */
 
-    const year =
-        document.querySelector("#year");
+    const hero =
+        document.querySelector(".hero");
 
-    if (year) {
-        year.textContent =
-            new Date().getFullYear();
-    }
+    const heroImage =
+        document.querySelector(".hero-image");
 
 
-    /* =====================================================
-       SMOOTH ANCHOR SCROLL
-       ===================================================== */
+    if (hero && heroImage) {
 
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach(link => {
-
-            link.addEventListener("click", event => {
-
-                const targetId =
-                    link.getAttribute("href");
+        window.addEventListener(
+            "scroll",
+            function () {
 
                 if (
-                    !targetId ||
-                    targetId === "#"
+                    window.innerWidth <= 768
                 ) {
                     return;
                 }
 
-                const target =
-                    document.querySelector(targetId);
+                const scroll =
+                    window.scrollY;
 
-                if (!target) return;
+                if (scroll < window.innerHeight) {
 
-                event.preventDefault();
+                    heroImage.style.transform =
+                        `scale(1.08) translateY(${scroll * 0.12}px)`;
 
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                }
 
-            });
+            },
+            { passive: true }
+        );
 
-        });
+    }
+
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
+
+    const sections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
+    const navLinks =
+        document.querySelectorAll(
+            ".nav > a"
+        );
+
+
+    window.addEventListener(
+        "scroll",
+        function () {
+
+            let current = "";
+
+            sections.forEach(
+                function (section) {
+
+                    const sectionTop =
+                        section.offsetTop - 180;
+
+                    if (
+                        window.scrollY >=
+                        sectionTop
+                    ) {
+
+                        current =
+                            section.getAttribute(
+                                "id"
+                            );
+
+                    }
+
+                }
+            );
+
+
+            navLinks.forEach(
+                function (link) {
+
+                    link.classList.remove(
+                        "active-link"
+                    );
+
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
+
+                    if (
+                        href === "#" + current
+                    ) {
+
+                        link.classList.add(
+                            "active-link"
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        { passive: true }
+    );
+
+
+    /* =====================================================
+       CURRENT YEAR
+    ===================================================== */
+
+    const year =
+        document.getElementById("year");
+
+    if (year) {
+
+        year.textContent =
+            new Date().getFullYear();
+
+    }
+
+
+    /* =====================================================
+       SMOOTH SCROLL
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function (event) {
+
+                        const targetId =
+                            link.getAttribute(
+                                "href"
+                            );
+
+                        if (
+                            !targetId ||
+                            targetId === "#"
+                        ) {
+                            return;
+                        }
+
+                        const target =
+                            document.querySelector(
+                                targetId
+                            );
+
+                        if (!target) {
+                            return;
+                        }
+
+                        event.preventDefault();
+
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }
+                );
+
+            }
+        );
 
 });
